@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Social Space</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='stylesheets/add_friend.css') }}">
+    <!-- Link to import the Orbitron font from Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
+    <style>
+        .logo a {font-family: 'Orbitron', sans-serif;text-decoration: none;color: black;}
+    </style>
+</head>
+<body>
+    <script>
+        function userredirect(username) {
+            window.location.href = '/user/' + username;
+        }
+    </script>
+    <div class="bg-color">
+        <div class="navbar">
+            <div class="logo">
+                <!-- Applying Orbitron font to the logo -->
+                <a class="logo" href="/" style="text-decoration: none; color: rgb(255, 255, 255);">Social Space</a>
+            </div>
+            <div class="account">
+                {% if username %}
+                    <a href="#account-popup">{{ username }}</a>
+                {% else %}
+                    <a href="/login">Log In</a>
+                {% endif %}
+            </div>        
+        </div>
+    <br>
+    <h2>Add-Friend</h2>
+    <form action="/user/{{username}}/add-friend" method="POST">
+        <input type="text" name="query" placeholder="Search for Users by their name or username" required>
+        <button type="submit">Search</button>
+    </form>
+    {% if results %}
+        <div class="results-container">
+            {% for result in results %}
+                <div class='result' onclick="userredirect('{{ result[0] }}')">
+                        <h2>{{ result[1] }}</h2>
+                        <h3>{{ result[0] }}</h3>
+                        <p>{{ result[2] }}</p>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+    <div id="account-popup" class="overlay light">
+        <a class="cancel" href="#"></a>
+        <div class="popup">
+            <a href="/user/{{username}}">Your Profile</a><br>
+            <a href="/user/{{username}}/add-friend">Add-Friend</a><br>
+            <a href="/user/{{username}}/new-post">New-Post</a><br>
+            <a href="/log-out">Log-Out</a>
+    </div>
+    </div>
+    </div>
+</body>
+</html>

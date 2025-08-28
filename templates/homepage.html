@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Social Space</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='stylesheets/homepage.css') }}">
+    <!-- Link to import the Orbitron font from Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
+</head>
+<style>
+    .logo a {font-family: 'Orbitron', sans-serif;text-decoration: none;color: black;}
+</style>
+<body>
+    <div class="bg-color">
+        <div class="navbar">
+            <div class="logo">
+                <a class="logo" href="/" style="text-decoration: none; color: rgb(255, 255, 255);">Social Space</a>
+            </div>
+            <div class="account">
+                {% if username %}
+                    <a href="#account-popup">{{ username }}</a>
+                {% else %}
+                    <a href="/login">Log-In</a>
+                {% endif %}
+            </div>        
+        </div>
+    <br>
+    {% if posts %}
+    <div class="posts-container">
+        {% for post in posts %}
+            <div class='post'>
+                    <h3>{{ post[1] }}</h3>
+                    <div class="image-container">
+                    <img src="/get_image/{{ post[0] }}" alt="Image">
+                    </div><br>
+                    <h4> {{ post[2] }} </h4>
+            </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <a href="/login">Log-In</a><a> to access the site.</a>
+    {% endif %}        
+    <div id="account-popup" class="overlay light">
+        <a class="cancel" href="#"></a>
+        <div class="popup">
+            <a href="/user/{{username}}">Your Profile</a><br>
+            <a href="/user/{{username}}/add-friend">Add-Friend</a><br>
+            <a href="/user/{{username}}/new-post">New-Post</a><br>
+            <a href="/log-out">Log-Out</a>
+    </div>
+    </div>
+    </div>
+</body>
+</html>

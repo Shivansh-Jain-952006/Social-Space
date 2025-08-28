@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ user_set[3] }} // Social Space</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='stylesheets/user.css') }}">
+    <!-- Link to import the Orbitron font from Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
+</head>
+<style>
+    .logo a {font-family: 'Orbitron', sans-serif;text-decoration: none;color: black;}
+</style>
+<body>
+    <div class="bg-color">
+        <div class="navbar">
+            <div class="logo">
+                <a class="logo" href="/" style="text-decoration: none; color: rgb(255, 255, 255);">Social Space</a>
+            </div>
+            <div class="account">
+                {% if username %}
+                    <a href="#account-popup">{{ username }}</a>
+                {% else %}
+                    <a href="/login">log-in</a>
+                {% endif %}
+            </div>        
+        </div>
+        <br>
+        <div class="user-profile">
+            <div class="profile-info">
+                <div class="friend_line">
+                    <h1>{{ user_set[3] }}</h1>
+                    <h3>{{ user_set[1] }}</h3>
+                    {% if fstatus %}
+                        {% if fstatus[0] == 'pending' %}
+                            <div class="friend-status">
+                                <a>Friend-Request-Pending</a>
+                            </div>
+                        {% elif fstatus[0] == 'accepted' %}
+                            <div class="friend-status">
+                            <a>Your-Friends</a>
+                            </div>
+                        {% else %}
+                        <a href="/user/{{ username }}/add-friend/{{ user_set[1] }}">Add-Friends</a>
+                        {% endif %}
+                    {% else %}
+                        {% if username == user_set[1] %}
+                            <div class="friend-status1">
+                                <a href="#friends-popup">{{ naccepted[0] }} Friends</a>
+                            </div>
+                            <div class="friend-status">
+                                <a href="#pending-users-popup">{{ npending[0] }} Pending-Friend-Requests</a>
+                            </div>
+                        {% else %}
+                            <div class="friend-status">
+                                <a href="/user/{{ username }}/add-friend/{{ user_set[1] }}">Add-Friend</a>
+                            </div>
+                        {% endif %}
+                    {% endif %}
+                </div>
+                <br>
+                <div class="about">
+                    <p>{{ user_set[6] }}</p>
+                </div>
+                <br>
+                {% if username == user_set[1] %}
+                    <a href="#settings-popup">Click Here to Edit your Profile</a>
+                {% endif %}
+            </div>
+        </div>
+        {% if posts %}
+        <div class="posts-container">
+            {% for post in posts %}
+                <div class='post'>
+                        <div class="image-container">
+                        <img src="/get_image/{{ post[0] }}" alt="Image">
+                        </div><br>
+                        <p>{{ post[2] }}</p>
+                </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+    </div>
+    <div id="settings-popup" class="overlay light">
+        <a class="cancel" href="#"></a>
+        <div class="popup">
+            <h2>User-Settings</h2>
+            <form action="/user/{{ username }}" method="POST">
+                <h3>Name</h3>
+                <input type="text" maxlength="20" name="name" placeholder="Name"><br>
+                <h3>About</h3>
+                <input type="text" name="about" placeholder="Tell About Your Self"><br><br>
+                <button type="submit">Save</button>
+            </form>
+        </div>
+    </div>
+    <div id="pending-users-popup" class="overlay light">
+        <a class="cancel" href="#"></a>
+        <div class="popup">
+            <h2>Pending-Friend-Requests</h2>
+            {% for puser in pusers %}
+                <form action="/user/{{ username }}/accept-request/{{puser[0]}}" method="POST">
+                    <div class="pending-user"></div>
+                    <a href="/user/{{puser[0]}}">{{puser[0]}}</a>
+                    <button type="submit">Accept</button>
+                </form>
+            {% endfor %}
+        </div>
+    </div>
+    <div id="friends-popup" class=" overlay light">
+        <a class="cancel" href="#"></a>
+        <div class="popup">
+            <h2>Your-Friends</h2>
+            {% for auser in ausers %}
+                <a href="/user/{{auser[0]}}">{{auser[0]}}</a><br>
+            {% endfor %}
+        </div>
+    </div>
+        <div id="account-popup" class="overlay light">
+            <a class="cancel" href="#"></a>
+            <<div class="popup">
+                <a href="/user/{{username}}">Your Profile</a><br>
+                <a href="/user/{{username}}/add-friend">Add-Friend</a><br>
+                <a href="/user/{{username}}/new-post">New-Post</a><br>
+                <a href="/log-out">Log-Out</a>
+        </div>
+        </div>
+</body>
+</html>

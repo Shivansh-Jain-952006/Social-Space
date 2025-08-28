@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Social Space</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='stylesheets/new_post.css') }}">
+    <!-- Link to import the Orbitron font from Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
+</head>
+<style>
+    .logo a {font-family: 'Orbitron', sans-serif;text-decoration: none;color: black;}
+</style>
+<body>
+    <div class="bg-color">
+    <div class="navbar">
+        <div class="logo">
+            <a class="logo" href="/" style="text-decoration: none; color: rgb(255, 255, 255);">Social Space</a>
+        </div>
+        <div class="account">
+            {% if username %}
+                <a href="#account-popup">{{ username }}</a>
+            {% else %}
+                <a href="/login">Log-In</a>
+            {% endif %}
+        </div>        
+    </div>
+
+    <div class="container">
+        <h1>New-Post</h1>
+        <form action="/user/{{username}}/new-post" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <input type="file" id="image" name="image" class="inputfile" accept="image/png, image/jpeg"></input><br>
+            </div>
+            <div class="form-group">
+                <label for="description">Post-Description:</label><br>
+                <input type="text" id="description" name="description"></textarea><br>
+            </div>
+            <input type="submit" value="Post" class="btn-submit">
+        </form>
+        <div id="account-popup" class="overlay light">
+            <a class="cancel" href="#"></a>
+            <div class="popup">
+                <a href="/user/{{username}}">Your Profile</a><br>
+                <a href="/user/{{username}}/add-friend">Add-Friend</a><br>
+                <a href="/user/{{username}}/new-post">New-Post</a><br>
+                <a href="/log-out">Log-Out</a>
+        </div>
+        </div>
+    </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Social Space</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='stylesheets/login.css') }}">
+    <!-- Link to import the Orbitron font from Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
+</head>
+<style>
+    .logo a {font-family: 'Orbitron', sans-serif;text-decoration: none;color: black;}
+</style>
+<body>
+    <div class="bg-color">
+        <div class="navbar">
+            <div class="logo">
+                <a class="logo" href="/" style="text-decoration: none; color: rgb(255, 255, 255);">Social Space</a>
+            </div>
+            <div class="account">
+                {% if username %}
+                    <a href="#account-popup">{{ username }}</a>
+                {% else %}
+                    <a href="/login">Log-In</a>
+                {% endif %}
+            </div>        
+        </div>
+    <br>
+    <h2>Enter your Details</h2>
+    <form action="/login" method="POST">
+        <input type="text" name="username" placeholder="Username" required><br>
+        <input type="password" name="password" placeholder="Password" required><br>
+        <button type="submit">Log-In</button>
+    </form>
+    <br>
+    {% if loginnotice %}
+        <div class="notice">
+            <a>{{ loginnotice }}</a>
+        </div>
+    {% endif %}
+    <p><center>Don't have an account? <a href="/signup">Sign-Up</a></center></p>
+    <div id="account-popup" class="overlay light">
+        <a class="cancel" href="#"></a>
+        <div class="popup">
+            <a href="/user/{{username}}">Your Profile</a><br>
+            <a href="/user/{{username}}/add-friend">Add-Friend</a><br>
+            <a href="/user/{{username}}/new-post">New-Post</a><br>
+            <a href="/log-out">Log-Out</a>
+    </div>
+    </div>
+    
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Social Space</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='stylesheets/signup.css') }}">
+    <!-- Link to import the Orbitron font from Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
+</head>
+<style>
+    .logo a {font-family: 'Orbitron', sans-serif;text-decoration: none;color: black;}
+</style>
+<body>
+    <div class="bg-color">
+        <div class="navbar">
+            <div class="logo">
+                <a class="logo" href="/" style="text-decoration: none; color: rgb(255, 255, 255);">Social Space</a>
+            </div>
+            <div class="account">
+                {% if username %}
+                    <a href="#account-popup">{{ username }}</a>
+                {% else %}
+                    <a href="/login">Log-In</a>
+                {% endif %}
+            </div>        
+        </div>
+        <br>
+    <h2>Sign-Up</h2>
+    <form action="/signup" method="POST" enctype="multipart/form-data">
+        <h3>Name: </h3> 
+        <input type="text" name="name" placeholder="Name"><br>
+        <h3>Username: </h3>
+        <input type="text" name="username" placeholder="Username"><br>
+        {% if user_check %}
+            <div class="notice">
+            <a>Username Already Exists!</a>
+            </div>
+        {%endif%}
+        <h3>Password: </h3>
+        <input type="password" name="password" placeholder="Password" required><br>
+        <h3>Date-of-Birth: </h3>
+        <input type="date" name="dob" placeholder="Date-of-Birth" required><br>
+        <h3>Contact-Number: </h3>
+        <input type="number" maxlength="10" name="contact_number" placeholder="Contact-Number" required><br>
+        <h3>Profile-Picture</h3>
+        <input type="file" id="image" name="image" class="inputfile" accept="image/png, image/jpeg"></input><br>
+        <button type="submit">Sign-Up</button>
+
+    </form>
+    <p><center>Already have an account? <a href="/login">Log-In</a></center></p>
+    <div id="account-popup" class="overlay light">
+        <a class="cancel" href="#"></a>
+        <div class="popup">
+            <a href="/user/{{username}}">Your Profile</a><br>
+            <a href="/user/{{username}}/add-friend">Add-Friend</a><br>
+            <a href="/user/{{username}}/new-post">New-Post</a><br>
+            <a href="/log-out">Log-Out</a>
+    </div>
+    </div>
+    </div>
+</body>
+</html>
+
+
+
+

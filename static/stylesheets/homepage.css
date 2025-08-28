@@ -1,0 +1,300 @@
+@import url('https://fonts.googleapis.com/css2?family=Young+Serif&display=swap');
+
+body {
+  background-image: url('../images/source_bg.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  max-width: 700px; /* Adjust the width as per your preference */
+  min-width: 400px;
+  margin: 0 auto; /* Center the body horizontally */
+  font-family: 'Young Serif', serif;
+}
+.bg-color {
+    background-color: #e6e6e6; /* Adjust background color as needed */
+    margin: 0;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); /* Add shadow */
+  }
+  
+
+.navbar {
+  margin: 0;
+  background-color: #F2F2F2;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  max-width: 700px; /* Adjust the max-width of the navbar */
+  margin: 0 auto; /* Center the navbar horizontally */
+}
+  
+
+.navbar .logo {
+  align-self: center;
+  text-align: center;
+  left: auto;
+  padding: 4px;
+  border-radius: 10px;
+  background-color: #006ebc;
+}
+
+
+.account {
+  margin-left: auto; /* Adjust margin as needed */
+  border-radius: 5px;
+  padding: 7px;
+  background-color: #ccc;
+  
+}
+.account a {
+    text-decoration: none;
+}
+
+.navbar .logo a {
+    font-weight: bold;
+    font-size: 50px;
+}
+
+.listing-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 0 auto;
+  max-width: 1300px;
+}
+
+.listing {
+    width: 200px;
+    padding: 10px;
+    margin: 10px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.listing .image-container {
+    text-align: center;
+    height: 150px; /* Fixed height for image box */
+}
+
+.listing .image-container img {
+    max-width: 100%;
+    height: 100%; /* Ensure the image takes the full height */
+    border-radius: 5px;
+}
+
+.listing h2 {
+    font-size: 16px;
+    margin: 5px 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: calc(100% - 10px);
+}
+
+.listing h3 {
+    font-size: 14px;
+    margin: 5px 0;
+}
+
+.listing strong {
+    font-weight: bold;
+}
+
+.listing h4 {
+    font-size: 12px;
+    margin-top: 10px;
+}
+
+/* Limit description to one line and show ellipsis for overflow */
+.listing p {
+    font-size: 14px;
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: calc(100% - 10px);
+}
+
+.container {
+  width: 400px;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.textbox {
+  width: calc(100% - 20px);
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.custom-file-upload {
+  display: inline-block;
+  padding: 10px;
+  background: #3498db;
+  color: #fff;
+  text-align: center;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.custom-file-upload:hover {
+  background: #2980b9;
+}
+
+.inputfile {
+  display: none;
+}
+
+.btn-submit {
+  display: block;
+  width: 100%; /* Adjusted width */
+  padding: 10px;
+  margin-top: 10px;
+  border: none;
+  background-color: #3498db;
+  color: white;
+  text-align: center;
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: 'Gabarito', cursive;
+}
+
+.btn-submit:hover {
+  background-color: #2980b9;
+}
+
+
+
+.overlay {
+  display: block;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+left: 0;
+right: 0;
+background: rgba(0,0,0,0.5);
+  transition: opacity 200ms;
+visibility: hidden;
+  opacity: 0;
+  &.light {
+  background: rgba(255,255,255,0.5);
+}
+.cancel {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  cursor: default;
+}
+&:target {
+  visibility: visible;
+  opacity: 1;
+}
+}
+
+.popup {
+  margin: 75px auto;
+  padding: 20px;
+  background: #fff;
+  border: 1px solid #666;
+  width: 300px;
+  box-shadow: 0 0 50px rgba(0,0,0,0.5);
+  position: relative;
+.light & {
+  border-color: #aaa;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.25);
+}
+h2 {
+  margin-top: 0;
+  color: #666;
+  font-family: "Trebuchet MS", Tahoma, Arial, sans-serif;
+}
+.close {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  top: 20px;
+  right: 20px;
+  opacity: 0.8;
+  transition: all 200ms;
+  font-size: 24px;
+  font-weight: bold;
+  text-decoration: none;
+  color: #666;
+  &:hover {
+    opacity: 1;
+  }
+}
+.content {
+  max-height: 400px;
+  overflow: auto;
+}
+p {
+  margin: 0 0 1em;
+  &:last-child {
+    margin: 0;
+  }
+}
+}
+
+.posts-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 0 auto;
+  max-width: 500px;
+}
+
+.post {
+    max-width: 700px;
+    padding: 10px;
+    margin: 10px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.post .image-container {
+    text-align: center;
+    height: 400px;
+    width: 400px;
+    display: flex;
+}
+
+
+.post .image-container img {
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+
+/* Limit description to one line and show ellipsis for overflow */
+.post p {
+    font-size: 14px;
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: calc(100% - 10px);
+}
+
